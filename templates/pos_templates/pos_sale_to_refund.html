@@ -1,0 +1,28 @@
+<div class="col-lg-12 p-1 small-size color-black border" style="height: 350px; max-height: 350px; overflow: auto;">
+    {% for info in sale_info %}
+        <div class="col-lg-12 inline-flex-space-between">
+            <div>{{ info.units }} x {{ info.bar_code }} / {{ info.description }} / {{ info.sell_price | currency }}</div>
+            <div class="sucess-message f-bold gap-8">{{ info.total | currency }}
+                <select class="display-none" name="select_units" id="{{ info.id }}">
+                    {% for i in range(info.units + 1) %}
+                        <option>{{ i }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>        
+    {% endfor %}
+</div>
+<div class="col-lg-12 p-1 color-black border-top">
+    <div class="col-lg-12 inline-flex-space-between">
+        <div class="personal-blue-color f-bold">TOTAL</div>
+        <div class="sucess-message f-bold">{{ total | currency }}</div>
+    </div>        
+</div>
+<div class="col-lg-12" id="refund_options">
+    <button class="btn btn-sm btn-danger w-100 mt-1 mb-1" id="refund_entire_sale">Refund entire sale</button>
+    <button class="btn btn-sm btn-danger w-100 mt-1 mb-1" id="refund_selected_products">Refund selected products</button>
+</div>
+<div class="col-lg-12 display-none" id="refund_selected_products_menu">
+    <button class="btn btn-sm btn-danger w-100 mt-1 mb-1" id="confirm_products_to_refund">Confirm products to refund</button>
+    <button class="btn btn-sm btn-danger w-100 mt-1 mb-1" id="cancel">Cancel</button>
+</div>

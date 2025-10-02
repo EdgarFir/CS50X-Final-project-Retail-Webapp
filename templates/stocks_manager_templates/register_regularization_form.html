@@ -1,0 +1,34 @@
+<form class="personal-form" id="register_regularization_form">
+    {{ form.hidden_tag() }}
+    <h5 class="mt-3 personal-blue-color mt-3">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-chevron-double-right me-1" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708"/>
+            <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708"/>
+          </svg>
+          Register regularization</h5>
+        <hr></hr>
+        <div class="color-black mb-3">
+            Product: <span class="personal-blue-color f-bold me-1">{{ product_or_service.description }}</span>
+            Bar code: <span class="personal-blue-color f-bold me-1">{{ product_or_service.bar_code }}</span>
+            Unity measurement: <span class="personal-blue-color f-bold">{{ product_or_service.unity_m }}</span>
+        </div>
+    <div class="col-lg-12 p-3 light-blue-rounded user-form" id="regularization_content">
+        <div class="col-lg-12">
+            <label for="regularization_actual_stock" class="form-label">Actual stock:</label>
+            <div class="input-group input-group-sm mb-3" style="justify-content: center;">
+                <input type="text" class="form-control form-control-sm border rounded-0  product-input" value="{{ product_or_service.stock }}" id="regularization_actual_stock" disabled>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            {{ form.stock.label(class="form-label")}}
+            <div class="input-group input-group-sm mb-3" style="justify-content: center;">
+                {{ form.stock(class="form-control form-control-sm border rounded-0")}}
+            </div>
+        </div>
+        <div class="col-lg-12 mt-4 mb-3">
+            {{ form.submit_regularization(class="btn btn-sm btn-success rounded-0 min-w-10 search_button small-size w-100")}}
+        </div>
+        <div class="small-size message"></div>
+        
+    </div>
+</form>  

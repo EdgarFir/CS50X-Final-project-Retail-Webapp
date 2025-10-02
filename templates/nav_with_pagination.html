@@ -1,0 +1,41 @@
+<nav aria-label="Page navigation example mt-2 mb-2"></nav>
+    <ul class="pagination pagination-sm justify-content-end">
+      {% if number_of_pages == 1 %}
+        <li class="page-item disabled"><a class="page-link color-black" id="previous_page" >Previous</a></li>
+        <li class="page-item"><a class="page-link personal-blue-color active active_pagination">1</a></li>
+        <li class="page-item disabled"><a class="page-link color-black" id="next_page">Next</a></li>
+      {% elif number_of_pages == 2 %}
+        <li class="page-item {% if pagination_index == 1 %} disabled {% endif %}"><a class="page-link color-black" name="change_page" id="previous_page">Previous</a></li>
+        <li class="page-item"><a class="page-link personal-blue-color {% if pagination_index == 1 %} active {% endif %}">1</a></li>
+        <li class="page-item"><a class="page-link personal-blue-color {% if pagination_index == 2 %} active {% endif %}">2</a></li>
+        <li class="page-item {% if pagination_index == 2 %} disabled {% endif %}"><a class="page-link color-black" name="change_page" id="next_page">Next</a></li>
+      {% elif number_of_pages == 3 %}
+        <li class="page-item {% if pagination_index == 1 %} disabled {% endif %}"><a class="page-link color-black" name="change_page" id="previous_page">Previous</a></li>
+        <li class="page-item"><a class="page-link personal-blue-color {% if pagination_index == 1 %} active active_pagination {% endif %}">1</a></li>
+        <li class="page-item"><a class="page-link personal-blue-color {% if pagination_index == 2 %} active active_pagination {% endif %}">2</a></li>
+        <li class="page-item"><a class="page-link personal-blue-color {% if pagination_index == 3 %} active active_pagination {% endif %}">3</a></li>
+        <li class="page-item {% if pagination_index == number_of_pages %} disabled {% endif %}"><a class="page-link color-black" name="change_page" id="next_page">Next</a></li>
+      {% else %}
+        {% if pagination_index < 3 %}
+            <li class="page-item {% if pagination_index == 1 %} disabled {% endif %}"><a class="page-link color-black" name="change_page" id="previous_page">Previous</a></li>
+            <li class="page-item"><a class="page-link personal-blue-color {% if pagination_index == 1 %} active active_pagination {% endif %}">1</a></li>
+            <li class="page-item"><a class="page-link personal-blue-color {% if pagination_index == 2 %} active active_pagination {% endif %}">2</a></li>
+            <li class="page-item"><a class="page-link personal-blue-color">3</a></li>
+            <li class="page-item"><a class="page-link color-black" name="change_page" id="next_page">Next</a></li>
+        {% elif pagination_index >= 3 and pagination_index != number_of_pages %}
+            <li class="page-item"><a class="page-link color-black" name="change_page" id="previous_page">Previous</a></li>
+            <li class="page-item"><a class="page-link personal-blue-color">{{ pagination_index - 1}}</a></li>
+            <li class="page-item"><a class="page-link personal-blue-color active active_pagination ">{{ pagination_index }}</a></li>
+            <li class="page-item"><a class="page-link personal-blue-color">{{ pagination_index + 1}}</a></li>
+            <li class="page-item"><a class="page-link color-black" name="change_page" id="next_page">Next</a></li>
+        {% else %}
+            <li class="page-item"><a class="page-link color-black" name="change_page" id="previous_page">Previous</a></li>
+            <li class="page-item"><a class="page-link personal-blue-color">{{ pagination_index - 2}}</a></li>
+            <li class="page-item"><a class="page-link personal-blue-color">{{ pagination_index - 1}}</a></li>
+            <li class="page-item"><a class="page-link personal-blue-color active active_pagination ">{{ pagination_index}}</a></li>
+            <li class="page-item"><a class="page-link color-black disabled" name="change_page" id="next_page">Next</a></li>
+        {% endif %}
+      {% endif %}
+    </ul>
+</nav>
+{% block table %}{% endblock %}

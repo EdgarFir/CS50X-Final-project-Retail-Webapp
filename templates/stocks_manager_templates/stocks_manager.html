@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+{% block title %}
+    Stocks manager
+{% endblock %}
+
+{% block main %}
+    <div class="col-lg-12 header_description mt-2" style="min-height: 225px!important; height: 225px!important;">
+            <div style="min-height: 200px; padding:inherit;">
+                <h1 class="mb-3 mt-3 p-3">Stocks manager</h1>
+                <h3 class="mb-3 p-3">Consult, regularize and analyze your stocks.</h3>
+            </div>
+    </div>
+    <div class="container-fluid p-0 mt-3 bg-white">
+        <div class="row mx-auto p-2" id="stocks_content">
+            <div class="col-lg-12 mt-3 mb-3 p-2">
+                <form class="vertical-nav-add-form user-form">
+                    <div id="search_product" class="mt-2">
+                        <h5 class="personal-blue-color">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-chevron-right me-1" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/>
+                            </svg>
+                            Search for description or bar code and select action
+                        </h5>
+                        <div class="row">
+                            <div class="col-lg-12 mb-2 mt-3">
+                                <label for="stock_actions" class="form-label mt-3">Select action:</label>
+                                <select class="form-select form-select-sm me-4 max-h-30" id="stock_actions">
+                                    <option disabled selected>Select action:</option>
+                                    <option name="stock_actions_options" value="register_waste">Register waste</option>
+                                    <option name="stock_actions_options" value="register_regularization">Register regularization</option>
+                                    <option name="stock_actions_options" value="consult_movements">Consult movements</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-12 mb-2 mt-2 display-none" id="select_product_or_service">
+                                <label for="search_options" class="form-label mt-3">Select search:</label>
+                                <select class="form-select form-select-sm me-4 max-h-30" id="search_options">
+                                    <option name="search_actions_options" disabled selected>Select search:</option>
+                                    <option name="search_actions_options" value="product">Product</option>
+                                    <option name="search_actions_options" value="service">Service</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-12 mb-3 mt-3 display-none" id="search_for_product_or_service">
+                                <label for="description_bar_code" class="form-label mt-3">Description or bar code:</label>
+                                <input autocomplete="off" maxlength="120" minlength="4" type="search" id="description_bar_code" class="form-control form-control-sm border rounded-0 display-none" placeholder="Search for product description or bar code">
+                                <input autocomplete="off" maxlength="120" minlength="4" type="search" id="service_description_bar_code" class="form-control form-control-sm border rounded-0 display-none" placeholder="Search for service description or bar code">
+                                <div class="list-group small-size" id="description_auto_complete"></div>
+                            </div>    
+                        </div>                
+                    </div>
+
+                    
+                    <div class="message small-size mt-1 mb-1"></div>
+    
+                    <button class="btn btn-sm btn-success rounded-0 min-w-10 search_button small-size w-100" id="get_stocks_content" type="submit" role="button" value="button">Go!</button>
+                   
+                    <div class="col-lg-12 mt-5 mb-3" id="action_content"></div>   
+
+                </form>
+            </div>
+    </div>
+    
+{% endblock %}

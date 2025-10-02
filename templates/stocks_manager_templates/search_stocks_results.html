@@ -1,0 +1,32 @@
+<div class="col-lg-12 mb-2 mt-2">
+    <span class="personal-blue-color">Results: </span> <span>{{ (products | length ) }}</span>
+</div>
+<div class="table-responsive">
+    <table class="table table-bordered table-sm">
+        <thead>
+            <tr>
+                <th scope="col">Internal code</th>
+                <th scope="col">Description</th>
+                <th scope="col">Stock</th>
+                <th scope="col">Unity of measurent</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            {% if (products | length > 0) %}
+                {% for product in products %}
+                <tr style="height: 10px;">
+                    <td class="row_description">{{ product.internal_code }}</td>
+                    <td class="row_internal_code">{{ product.description }}</td>
+                    <td class="row_stock">{{ product.stock }}</td>
+                    <td class="row_unity_m">{{ product.unity_m }}</td>                                          
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td class="text-center small-size"  colspan="4">No results.</td>
+                </tr>
+            {% endif %}
+    
+        </tbody>
+    </table>
+</div>

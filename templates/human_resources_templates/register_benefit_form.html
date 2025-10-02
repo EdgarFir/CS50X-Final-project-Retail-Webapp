@@ -1,0 +1,33 @@
+<form class="personal-form user-form" id="register_benefit_form">
+    {{ register_benefit_form.hidden_tag() }}
+    <h7 class="color-black f-bold">Assign benefits</h7>
+    <div class="w-100 mb-3 mt-3">
+        <div class="col-lg-12 mt-3 mb-3">
+            <div class="col-lg-12 mt-3 mb-3 gap-8">
+                {{ register_benefit_form.benefit.label(class="form-label")}}
+                {{ register_benefit_form.benefit(class="form-control form-control-sm border rounded-0", placeholder=current_user.user_currency | currency_filter ) }}
+            </div>
+            {{ register_benefit_form.register_benefit(class="btn btn-sm btn-success rounded-0 w-100") }}
+        </div>
+    </div>
+    <div class="message small-size"></div>
+</form>
+<hr></hr>
+<form class="personal-form user-form" id="consult_benefits_form">
+    {{ consult_benefits_form.hidden_tag() }}
+    <h7 class="color-black f-bold mb-3 mt-3">Consult benefits</h7>
+    <div class="w-100 mb-3 mt-3">
+        <div class="col-lg-12 mt-3 mb-3">
+            <div class="col-lg-12 mt-3 mb-3 gap-8">
+                {{ consult_benefits_form.consult_dates.label(class="form-label") }}
+                {{ consult_benefits_form.consult_dates(class="form-select form-select-sm") }}
+            </div>
+            {{ consult_benefits_form.consult_benefits(class="btn btn-sm btn-success rounded w-100")}}
+        </div>
+    </div>
+    <div class="message small_size"></div>
+    <div class="col-lg-12" id="consult_benefits_results"></div>
+    <div id="allowed_period_to_register_benefits" class="mb-2 mt-2">
+        {{ allowed_period | safe }}
+    </div>
+</form>

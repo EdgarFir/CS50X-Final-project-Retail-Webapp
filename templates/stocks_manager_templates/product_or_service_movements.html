@@ -1,0 +1,45 @@
+{% extends "nav_with_pagination.html" %}
+
+{% block table %}
+
+<div class="col-lg-12">
+    <div class="col-lg-12 color-black">
+        Movements from <span class="personal-blue-color f-bold">{{ start_date }}</span> to <span class="personal-blue-color f-bold">{{ end_date }}</span>
+    </div>
+    <div class="col-lg-12 color-black">
+        Stock: <span class="personal-blue-color f-bold">{{ stock }}</span>
+    </div>
+    <div class="table-responsive user-form">
+        <table class="table table-bordered table-hover table-sm mt-3 mb-3">
+            <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Movement</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Total</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                {% if (all_movements | length) > 0 %}
+                    {% for movement in all_movements %}
+                        <tr style="height: 10px;">
+                            <td class="row_date">{{ movement.date }}</td>
+                            <td class="row_movement">{{ movements[movement.movement_type - 101].movement_description }}</td>
+                            <td class="row_stock f-bold {% if movement.movement_type == 107 %} sale-color {% elif movement.movement_type == 108 %} refund-color {% elif movement.movement_type in (101, 103, 106) %}sucess-message{% elif movement.movement_type in (102, 104, 105) %} error-message {% endif %}">
+                                {% if movement.units > 0  %} {{ movement.units | benefit_un }} {% else %} {{ movement.units }} {% endif %}
+                            </td>
+                            <td class="row_total f-bold {% if movement.movement_type == 107 %} sale-color {% elif movement.movement_type == 108 %} refund-color {% elif movement.movement_type in (101, 103, 106) %}sucess-message{% elif movement.movement_type in (102, 104, 105) %} error-message {% endif %}">{{ movement.total | currency }}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                <tr style="height: 10px;">
+                    <td colspan="4" class="text-center">No records!</td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+        <div class="message small-size"></div>    
+    </div>
+</div>
+
+{% endblock %}

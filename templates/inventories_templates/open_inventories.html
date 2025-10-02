@@ -1,0 +1,43 @@
+<hr></hr>
+<h5 class="personal-blue-color mb-3">
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-chevron-double-right me-1" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708"/>
+        <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708"/>
+      </svg>
+    Consult open inventories
+</h5>
+<div class="mt-4 col-lg-12 gap-8">
+    <span class="color-black">Open inventories: </span> <span class="personal-blue-color f-bold"> {{ open_inventories | length }}</span>
+</div>
+{% for inventory in open_inventories %}
+<div class="user-form open_inventory mt-3 mb-3">
+    <ul class="list-group" id="{{ inventory.id }}"> 
+        <li class="list-group-item list-group-item-light mb-3">
+            Inventory number: <span class="personal-blue-color f-bold">{{ inventory.inventory_number }}</span>   Created: <span class="personal-blue-color f-bold">{{ inventory.created_date }}</span> 
+            <span style="float: right">
+                <button class="personal-button" name="check_inventory">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-eye-fill ms-5" viewBox="0 0 16 16">
+                        <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
+                        <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
+                    </svg>
+                </button>   
+            </span>
+        </li>
+        <div class="col-lg-12 mt-1 mb-1 {% if inventory.status == 'recount' or inventory.status == 'counted' %} display-none {% endif %}">
+            <button class="btn btn-sm btn-primary rounded-0 w-100" name="count_inventory" type="submit" role="button" {% if inventory.status == 'recount' %} disabled {% endif %}>Count inventory</button>
+        </div>
+        <div class="col-lg-12 mt-1 mb-1 {% if inventory.status == 'open' or inventory.status == 'counted' %} display-none {% endif %}">
+            <button class="btn btn-sm btn-primary rounded-0 w-100" name="recount_products" type="submit" role="button" {% if inventory.status == 'open' %} disabled {% endif %}>Recount</button>
+        </div>
+        <div class="col-lg-12 mt-1 mb-1 {% if inventory.status == 'open' or inventory.status == 'recount' %} display-none {% endif %}">
+            <button class="btn btn-sm btn-primary rounded-0 w-100" name="finish_inventory" type="submit" role="button" {% if inventory.status == 'open' %} disabled {% endif %}>Finish inventory</button>
+        </div>
+        <div class="col-lg-12 mt-1 mb-1" >
+            <button class="btn btn-sm btn-primary rounded-0 w-100" name="show_pop_over_delete_inventory" value="delete_inventory" type="submit" role="button">Delete inventory</button>
+        </div>
+    </ul>
+    <div class="mt-2 mb-2 message small-size"></div>
+</div>
+
+
+{% endfor %}

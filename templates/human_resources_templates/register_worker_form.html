@@ -1,0 +1,68 @@
+<div class="col-lg-12 p-2">
+    <h5 class="personal-blue-color mb-3">
+          Register worker
+    </h5>
+    <form class="personal-form user-form" id="register_worker_form">
+        {{ form.hidden_tag() }}
+        <div class="row">
+            <div class="col-lg-12 inline-flex-space-between mt-1 gap-8">
+                <div class="row">
+                    <div class="col-lg-6">
+                        {{ form.fullname.label(class="form-label") }}
+                        {{ form.fullname(class="form-control form-control-sm border rounded-0") }}
+                    </div>
+                    <div class="col-lg-6">
+                        {{ form.born_date.label(class="form-label") }}
+                        {{ form.born_date(class="form-control form-control-sm border rounded-0", max=maximum_worker_born_date) }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 inline-flex-space-between mt-3 gap-8">
+                <div class="row">
+                    <div class="col-lg-9">
+                        {{ form.adress.label(class="form-label") }}
+                        {{ form.adress(class="form-control form-control-sm border rounded-0") }}
+                    </div>
+                    <div class="col-lg-3">
+                        {{ form.contact.label(class="form-label") }}
+                        {{ form.contact(class="form-control form-control-sm border rounded-0") }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 inline-flex-space-between mt-3 gap-8">
+                <div class="row">
+                    <div class="col-lg-6">
+                        {{ form.section.label(class="form-label") }}
+                        {{ form.section(class="form-select form-select-sm") }}
+                    </div>
+                    <div class="col-lg-6">
+                        {{ form.role.label(class="form-label") }}
+                        {{ form.role(class="form-select form-select-sm") }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 inline-flex-space-between mt-3 gap-8">
+                <div class="row">
+                    <div class="col-lg-4">
+                        {{ form.workload_day.label(class="form-label") }}
+                        {{ form.workload_day(class="form-select form-select-sm") }}
+                    </div>
+                    <div class="col-lg-4">
+                        {{ form.workload_week.label(class="form-label") }}
+                        {{ form.workload_week(class="form-select form-select-sm") }}
+                    </div>
+                    <div class="col-lg-4">
+                        {{ form.base_salary.label(class="form-label") }}
+                        {{ form.base_salary(class="form-control form-control-sm border rounded-0") }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-12 small-size mb-2 mt-2 message"></div>
+        
+        <div class="col-lg-12 mt-4 mb-3">
+            {{ form.register_worker(class="btn btn-sm btn-success rounded-0 w-100 small-size") }}
+        </div>
+    </form>
+</div> 

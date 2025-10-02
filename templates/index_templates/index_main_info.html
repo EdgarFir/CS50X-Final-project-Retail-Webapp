@@ -1,0 +1,131 @@
+{% if session["store_status"] == 'monitoring' or session["store_status"] == 'pos_manual_mode' or session["store_status"] == 'pos_scan_mode' %}
+        <div class="col-lg-12 border border-2 p-2 bg-dark gap-8 inline-flex-space-between" style="color: white!important;">
+            <div>Sales: <span class="personal-blue-color" id="sales">{{ 0 | currency }}</span></div> <div>Clients: <span class="personal-blue-color" id="clients">0</span></div>
+        </div>
+{% endif %}
+<div class="col-lg-12 p-2" style="border-bottom: solid 5px; border-bottom-color: lightskyblue; align-items: center;">
+    <div class="inline-flex-space-between" style="align-items: center;">
+        {% if session["store_status"] == 'open' or session["store_status"] == 'monitoring' or session["store_status"] == 'pos_manual_mode' or session["store_status"] == 'pos_scan_mode' %}
+            <div>
+                Status: <span class="personal-blue-color f-bold">
+                        {% if session["store_status"] == 'open'%}
+                            Open
+                        {% else %}
+                            Monitoring
+                        {% endif %}
+                        </span>       
+            </div>
+            <div>
+                <button class="btn btn-sm btn-success" id="close_store">
+                    Close store
+                </button>
+                {% if session["store_status"] == 'open' %}
+                    <button class="btn btn-sm btn-success" id="start_monitoring">
+                        Start Monitoring
+                    </button>
+                {% else %}
+                    <button class="btn btn-sm btn-success" id="stop_monitoring">
+                        Stop Monitoring
+                    </button>
+                    <button class="btn btn-sm btn-success" id="start_pos">
+                        Start POS
+                    </button>
+                {% endif %}
+            </div>
+        {% else %}
+            <div>
+                Status: <span class="personal-blue-color f-bold">Closed</span>       
+            </div>
+            <div class="gap-8">
+                <button class="btn btn-sm btn-success" id="open_store" {% if data_to_render.products_registered == 0 %} data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="custom-tooltip" data-bs-title="Register products to use POS!"{% endif %}>
+                    Open store
+                </button>
+            </div>
+        {% endif %}
+    </div>
+</div>
+<div id="index_body">
+    <div class="col-lg-12 mt-3 mb-3">
+        <h1 class="personal-blue-color"><i>{{ company_name }}</i></h1>
+    </div> 
+    <hr></hr>
+    <div class="col-lg-12 mt-3 mb-3">
+        <div class="row text-center mx-auto">
+            <div class="col-lg-6 mt-2">
+                <div class="col-lg-12 border rounded-2 p-2 shadow">
+                    <div class="col-lg-12 mb-2">Products registered</div>
+                    <div class="col-lg-12 mt-2 mb-2 personal-blue-color f-bold"><h5 id="products_registered">{{ data_to_render.products_registered }}</h5></div>
+                </div>
+            </div>
+            <div class="col-lg-6 mt-2">
+                <div class="col-lg-12 border rounded-2 p-2 shadow">
+                    <div class="col-lg-12 mb-2">Services registered</div>
+                    <div class="col-lg-12 mt-2 mb-2 personal-blue-color f-bold"><h5>{{ data_to_render.services_registered }}</h5></div>
+                </div>
+            </div>
+            {% if data_to_render.products_registered > 0 %}
+            <div class="col-lg-6 mt-2">
+                <div class="col-lg-12 border rounded-2 p-2 shadow">
+                    <div class="col-lg-12 mb-2">Company actual month sales</div>
+                    <div class="col-lg-12 mt-2 mb-2 sucess-message f-bold"><h5>{{ data_to_render.company_month_sales | currency }}</h5></div>
+                </div>
+            </div>
+            <div class="col-lg-6 mt-2">
+                <div class="col-lg-12 border rounded-2 p-2 shadow">
+                    <div class="col-lg-12 mb-2">Company actual month wastes</div>
+                    <div class="col-lg-12 mt-2 mb-2 error-message f-bold"><h5>{{ data_to_render.company_month_wastes | currency }}</h5></div>
+                </div>
+            </div>
+            {% else %}
+            <div class="col-lg-12 mt-5 mb-3 p-3">
+                <h5 class="color-black">You dont have products or services registered yet! Register your products at <a href="/products_and_services">My products and services</a>!</h5>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% if data_to_render.products_registered > 0 %}
+    <div class="col-lg-12 mt-3 color-black">
+        <ul class="list-group" id=""> 
+            <li class="list-group-item list-group-item-light shadow mb-3">
+                Products without sales in last 15 days: <span class="personal-blue-color">{{ data_to_render.products_without_sales }}</span>
+                {% if data_to_render.products_without_sales > 0 %}
+                <span style="float: right">
+                    <button class="personal-button" id="show_products_without_sales_info">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-eye-fill ms-5" viewBox="0 0 16 16">
+                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
+                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
+                        </svg>
+                    </button>
+                </span>
+                {% endif %}
+            </li>
+            <li class="list-group-item list-group-item-ligth shadow mb-3">
+                Products with stock at 0: <span class="personal-blue-color">{{ data_to_render.null_stock_products }}</span>
+                {% if data_to_render.null_stock_products > 0 %}
+                <span style="float: right">
+                    <button class="personal-button" id="show_products_with_null_stock_info" >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-eye-fill ms-5" viewBox="0 0 16 16">
+                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
+                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
+                        </svg>
+                    </button>
+                </span>
+                {% endif %}
+            </li>
+            <li class="list-group-item list-group-item-ligth shadow mb-3">
+                Products with negative stock: <span class="personal-blue-color">{{ data_to_render.negative_stock_products }}</span>
+                {% if data_to_render.negative_stock_products > 0 %}
+                <span style="float: right">
+                    <button class="personal-button" id="show_products_with_negative_stock_info">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-eye-fill ms-5" viewBox="0 0 16 16">
+                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
+                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
+                        </svg>
+                    </button>
+                </span>
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+    {% endif %}
+</div>

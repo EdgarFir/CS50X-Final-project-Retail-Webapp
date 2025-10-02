@@ -1,0 +1,28 @@
+<div class="row mt-3 mb-3">
+    <div class="col-lg-12 mt-3 mb-3">
+        <h5 class="personal-blue-color text-center">{{ product_description }} edited with sucess!</h5>
+    </div>
+    {% if services_associated | length > 0 %}
+    <div class="col-lg-12 mt-3 mb-3">
+        <h8 class="f-bold color-black">Services associated: <span class="personal-blue-color">{{ services_associated | length }}</span></h8>
+    </div>
+    <div class="col-lg-12 small-size mt-2 mb-2">
+        <span class="sucess-message f-bold">
+            Services affeted by cost price change.
+        </span>
+    </div>
+    <div class="col-lg-12 mb-3 mt-3">
+        <ul class="list-group">
+            {% for service in services_associated %}
+                <li class="list-group-item list-group-item-info inline-flex-space-between">
+                    <span class="color-black">Description:</span><span class="flex-end f-bold personal-blue-color">{{ service.description }}</span>
+                </li>
+                <li class="list-group-item list-group-item-info mb-3 inline-flex-space-between">
+                    <span class="color-black">Bar code:</span><span class="flex-end f-bold personal-blue-color">{{ service.bar_code }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+       
+    </div>
+    {% endif %}
+</div>

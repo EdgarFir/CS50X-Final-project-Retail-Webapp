@@ -1,0 +1,32 @@
+{% extends "nav_with_pagination.html" %}
+
+{% block table %}
+
+<div class="col-lg-12">
+    <div class="table-responsive user-form">
+        <table class="table table-bordered table-hover table-sm mt-3 mb-3">
+            <thead>
+                <tr>
+                    <th scope="col">Bar code</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                {% if (products_stock_info | length) > 0 %}
+                    {% for product in products_stock_info %}
+                        <tr style="height: 10px;">
+                            <td class="row_bar_code">{{product.bar_code }}</td>
+                            <td class="row_description">{{ product.description }}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                <tr style="height: 10px;">
+                    <td colspan="2" class="text-center">No records!</td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+        <div class="message small-size"></div>    
+    </div>
+</div>
+{% endblock %}

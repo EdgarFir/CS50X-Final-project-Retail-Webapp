@@ -1,0 +1,42 @@
+{% extends "nav_with_pagination.html" %}
+{% block table %}
+<form class="form-control-sm p-3 user-form"></form>
+    <h7 class="color-black f-bold">Select products to inventory:</h7>
+    <div class="w-100 mb-3 mt-3">
+        <table class="table table-bordered table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">Bar Code</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Cost price(€)</th>
+                    <th scope="col">Unity m.</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Inventory</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                
+                {% if products | length > 0 %}
+                    {% for product in products %}
+                    <tr id="{{ product.id }}">              
+                        <td class="row_bar_code">{{ product.bar_code }}</td>
+                        <td class="row_description">{{ product.description }}</td>
+                        <td class="row_cost_price">{{ product.cost_price }}</td>
+                        <td class="row_unity_m">{{ product.unity_m }}</td>
+                        <td class="row_stock">{{ product.stock }}</td>
+                        <td><input class="form-check-input" type="checkbox" name="send_to_inventory" id="{{ product.id }}"></td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                <tr>              
+                    <td colspan="6" class="text-center">No records!</td>
+                </tr>
+                    
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+    <div class="message small-size mt-1 mb-1"></div>
+    <button class="btn btn-sm btn-success rounded-0 w-100" id="create_inventory" type="submit" role="button">Create inventory</button>
+</form>
+{% endblock %}

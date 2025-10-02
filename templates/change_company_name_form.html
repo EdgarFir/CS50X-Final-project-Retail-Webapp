@@ -1,0 +1,17 @@
+<div class="col-lg-12 p-2">
+    <div class="display-none" id="email_token">
+    </div>
+    <div class="col-lg-12 p-1">
+        <form id="change_company_name_form">
+            {{ form.hidden_tag() }}
+            <div class="mb-2">
+                {{ form.company_name.label(class="form-label personal-blue-color") }}
+                {{ form.company_name(class="form-control", placeholder="Enter new company name", autofocus="on") }}
+                {% for error in form.company_name.errors %}
+                    <span class="small-size error-message mt-1 mb-1">{{ error }}</span>
+                {% endfor %}
+            </div>
+            {{ form.submit(class="btn btn-primary mt-3 mb-3 w-100", id="confirm_change") }}
+        </form>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="row mt-3 mb-3">
+    <div class="col-lg-12 mt-3 mb-3">
+        <h5 class="personal-blue-color text-center">{{ service_description }} registered with sucess!</h5>
+    </div>
+    <div class="col-lg-12 mb-3 mt-3">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item inline-flex-space-between"><span class="color-black">Cost price:</span><span class="flex-end f-bold personal-blue-color">{{ service_cost_price | currency }}</span></li>
+            <li class="list-group-item inline-flex-space-between"><span class="color-black">Sell price:</span><span class="flex-end f-bold personal-blue-color">{{ service_sell_price | currency }}</span></li>
+            <li class="list-group-item inline-flex-space-between"><span class="color-black">Margin percentage:</span><span class="flex-end f-bold personal-blue-color">{{ margin_percentage | percentage }}</span></li>
+          </ul>
+    </div>
+    <hr></hr>
+    <div class="col-lg-12 mt-3 mb-3">
+        <h8 class="f-bold color-black">Products associated: <span class="personal-blue-color">{{ products_and_stocks | length }}</span></h8>
+    </div>
+    <ul class="list-group mb-3">
+        {% for product in products_and_stocks %}
+        <li class="list-group-item list-group-item-info f-bold">
+            <span class="color-black">Product: </span><span class="personal-blue-color">{{ product.description }}</span>
+            <span class="color-black">Stock: </span><span class="personal-blue-color">{{ product.stock_associated }}</span>
+        </li>
+        {% endfor %}
+    </ul>
+</div>

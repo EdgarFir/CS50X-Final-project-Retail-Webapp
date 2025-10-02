@@ -1,0 +1,47 @@
+{% extends "nav_with_pagination.html" %}
+{% block table %}
+<div class="mt-2 mb-2 gap-8">
+    <span class="color-black">Inventory number: </span><span class="f-bold personal-blue-color">{{ inventory_number }}</span>
+    <span class="color-black">Products: </span><span class="f-bold personal-blue-color">{{ finish_inventory_products | length }}</span>   
+</div>
+<div class="user-form">
+    <div class="table-responsive">
+        <table class="table table-bordered table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">Bar Code</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Cost price({{ current_user.user_currency | currency_filter }})</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Count</th>
+                    <th scope="col">Diference</th>
+                    <th scope="col">Difference({{ current_user.user_currency | currency_filter }})</th>
+                    <th scope="col">Recount</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                {% for product in finish_inventory_products %}
+                <tr class="inventory_product" id="{{ product.id }}">                
+                    <td class="row_bar_code">{{ product.bar_code }}</td>
+                    <td class="row_description">{{ product.description }}</td>
+                    <td class="row_cost_price"><span class="sucess-message f-bold">{{ product.cost_price | currency }}</span></td>
+                    <td class="row_stock">{{ product.real_stock }}</td>
+                    <td class="row_count">{{ product.stock_counted }}</td>
+                    <td class="row_diff {% if product.stock_diff < 0 %} error-message {% else %} sucess-message {% endif %}">{% if product.stock_diff > 0 %} {{ product.stock_diff | benefit_un }} {% else %} {{ product.stock_diff }} {% endif %}</td>
+                    <td class="row_diff_value {% if product.stock_diff_value < 0 %} error-message {% else %} sucess-message {% endif %}">{% if product.stock_diff > 0 %} {{ product.stock_diff_value | benefit }} {% else %} {{ product.stock_diff_value | currency }} {% endif %}</td>
+                    <td><input class="form-check-input" type="checkbox" name="send_to_recount" id="{{ product.id }}"></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="mt-2 mb-2 gap-8">
+        <span class="color-black">Difference: </span><span class="f-bold {% if global_diff < 0 %} error-message {% else %} sucess-message {% endif %}">{% if global_diff > 0 %} {{ global_diff | benefit_un }} {% else %} {{ global_diff }} {% endif %}</span>
+        <span class="color-black">Difference({{ current_user.user_currency | currency_filter }}): </span><span class="f-bold {% if global_diff_value < 0 %} error-message {% else %} sucess-message {% endif %}">{% if global_diff_value > 0 %} {{ global_diff_value | benefit }} {% else %} {{ global_diff_value | currency }} {% endif %}</span>
+        
+    </div>
+    <div class="mt-2 mb-2 message small-size"></div>
+    <button class="btn btn-sm btn-success rounded-0 w-100" id="finish_inventory" type="submit" role="button">Finish inventory</button>
+    <button class="btn btn-sm btn-success rounded-0 w-100 display-none" id="send_recount" type="submit" role="button">Send products to recount</button>
+</div>
+{% endblock %}

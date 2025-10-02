@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% block title %}
+    Inventories
+{% endblock %}
+
+{% block main %}
+
+
+    <div class="col-lg-12 header_description mt-1" style="min-height: 225px!important; height: 225px!important;">
+        <div style="min-height: 200px; padding:inherit;">
+            <h1 class="mb-3 mt-3 p-3">Inventories</h1>
+            <h3 class="mb-3 p-3">
+                Create and analyze inventories for your products.
+            </h3>
+        </div>
+    </div>
+   
+    <div class="container-fluid p-0 mt-1">
+        <div class="row mx-auto">
+            <div class="container-fluid p-1 mt-3 bg-white">
+                <div class="row mx-auto p-2 bg-white" id="inventories_content">
+                    <form class="vertical-nav-add-form user-form">
+                        <div id="search_product" class="mt-2">
+                            <h5 class="personal-blue-color">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-chevron-right me-1" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/>
+                                </svg>
+                                Create or consult open and closed inventories
+                            </h5>
+                            <div class="col-lg-12 mb-3 mt-3">
+                                <label for="inventory_actions_options" class="form-label mt-3">Select action:</label>
+                                <select class="form-select form-select-sm family_group me-4 max-h-30" id="inventory_actions_options">
+                                    <option disabled selected>Select action:</option>
+                                    <option name="inventory_options" value="create_inventory">Create inventory</option>
+                                    <option name="inventory_options" value="consult_open_inventories">Consult open invetories</option>
+                                    <option name="inventory_options" value="consult_closed_inventories">Consult closed inventories</option>
+                                </select>
+                            </div>
+                            
+                        </div>
+        
+                        <div class="message small-size mt-1 mb-1"></div>
+                        
+                        <div class="col-lg-12 mt-4 flex-end">
+                            <button class="btn btn-sm btn-success rounded-0 min-w-10 search_button small-size w-100" id="inventory_actions" type="submit" role="button" value="button">Go!</button>
+                        </div>
+                    </form>
+                    <div class="col-lg-12 mt-3 mb-3 p-3">
+                        <div class="user-form" id="inventories_action_content"></div>
+                         
+                       
+                        <div class="col-lg-12" id="consult_inventories_content"></div>
+                        
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+
+
+    </div>
+{% endblock %}

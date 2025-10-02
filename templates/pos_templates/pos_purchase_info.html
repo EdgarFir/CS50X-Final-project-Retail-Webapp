@@ -1,0 +1,16 @@
+<div class="col-lg-12 p-1 small-size color-black" style="height: 422px; max-height: 422px; overflow: auto;">
+    {% for info in purchase_info %}
+        <div class="col-lg-12 inline-flex-space-between">
+            <div>{{ info.units }} x {{ info.bar_code }} / {{ info.description }} / {{ info.sell_price | currency }}</div>
+            <div class="sucess-message f-bold gap-8">{{ info.registry_total | currency }} <button class="personal-button display-none error-message" name="delete_registry"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
+              </svg></button></div>
+        </div>        
+    {% endfor %}
+</div>
+<div class="col-lg-12 p-1 color-black border-top">
+    <div class="col-lg-12 inline-flex-space-between">
+        <div class="personal-blue-color f-bold">TOTAL</div>
+        <div class="sucess-message f-bold">{{ purchase_total | currency }}</div>
+    </div>        
+</div>

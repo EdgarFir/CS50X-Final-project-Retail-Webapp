@@ -1,0 +1,32 @@
+<hr></hr>
+<div class="display-none" id="saved_products"></div>
+<form class="form-control-sm p-1 user-form" id="create_inventory_form">
+    {{ form.hidden_tag() }}
+    <h5 class="personal-blue-color">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-chevron-double-right me-1" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708"/>
+            <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708"/>
+          </svg>
+        Create inventory
+    </h5>
+    <div class="col-lg-12 mb-3 mt-3">
+        <div id="select_category">
+            {{ form.category.label(class="form-label") }}
+            <select class="form-select form-select-sm" id="category" name="category">
+                <option selected disabled value="disabled">Select category</option>
+                {% for category in form.category %}
+                    {{ category }}
+                {% endfor %}
+            </select>
+        </div>
+        
+        <div class="display-none mt-2 mb-2" id="select_sub_categories">
+            {{ form.sub_category_filter.label(class="form-label")}}
+            {% for item in form.sub_category_filter %}                
+                {{ item }}
+            {% endfor %}
+        </div>
+    </div>
+    <div class="message small-size mt-1 mb-1"></div>
+    <button class="btn btn-sm btn-primary rounded-0 w-100" id="select_products_to_inventory" type="submit" role="button">Create</button>
+</form>

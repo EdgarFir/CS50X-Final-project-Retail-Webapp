@@ -1,0 +1,15 @@
+<div class="col-lg-12 p-2">
+    <div class="col-lg-12 p-1">
+        <form id="authenticate_personal_code_form">
+            {{ form.hidden_tag() }}
+            <div class="mb-1">
+                {{ form.personal_code.label(class="form-label personal-blue-color") }}
+                {{ form.personal_code(class="form-control personal_code", placeholder="Enter personal code", autofocus="on") }}
+                {% for error in form.personal_code.errors %}
+                    <span class="small-size error-message">{{ error }}</span>
+                {% endfor %}
+            </div>
+            {{ form.submit(class="btn btn-primary mt-3 mb-3 w-100", id="confirm") }}
+        </form>
+    </div>
+</div>

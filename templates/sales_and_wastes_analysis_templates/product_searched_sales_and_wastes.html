@@ -1,0 +1,64 @@
+<div class="text-center mb-3 mt-2">
+    <h3 class="personal-blue-color">{{ data_to_render.product_description }} sales and wastes</h3>
+</div>
+<div class="row text-center mx-auto">
+    <div class="col-lg-4 mt-1">
+        <div class="col-lg-12 border rounded-2 p-2 shadow">
+            <div class="col-lg-12 mb-2">Sales(€) - Growth percentage/Homologous period(%)</div>
+            <div class="col-lg-12 mt-2 mb-2 sucess-message f-bold"><h5>{{ data_to_render.total_sales | currency }} <span clasS="color-black">/</span> {{ data_to_render.sales_growth_percentage | percentage }}</h5></div>
+            <div class="col-lg-12 mb-2 personal-blue-color small-size">{{ data_to_render.search_start_date }}-{{ data_to_render.search_end_date }} </div>
+        </div>
+    </div>
+    <div class="col-lg-4 mt-1">
+        <div class="col-lg-12 border rounded-2 p-2 shadow">
+            <div class="col-lg-12 mb-2">Homologous period sales({{ current_user.user_currency }})</div>
+            <div class="col-lg-12 mt-2 mb-2 sucess-message f-bold"><h5>{{ data_to_render.h_total_sales | currency  }}</h5></div>
+            <div class="col-lg-12 mb-2 personal-blue-color small-size">{{ data_to_render.h_search_start_date }}-{{ data_to_render.h_search_end_date }} </div>
+        </div>
+    </div>
+    <div class="col-lg-4 mt-1">
+        <div class="col-lg-12 border rounded-2 p-2 shadow">
+            <div class="col-lg-12 mb-2">Wastes(€) - Waste percentage/Sales(%)</div>
+            <div class="col-lg-12 mt-2 mb-2 error-message f-bold"><h5>{{ data_to_render.total_wastes | currency }} <span clasS="color-black">/</span> {{ data_to_render.waste_percentage | percentage }}</h5></div>
+            <div class="col-lg-12 mb-2 personal-blue-color small-size">{{ data_to_render.search_start_date }}-{{ data_to_render.search_end_date }} </div>
+        </div>  
+    </div>
+    <div class="col-lg-4 mt-1">
+        <div class="col-lg-12 border rounded-2 p-2 shadow">
+            <div class="col-lg-12 mb-2">Homologous period wastes({{ current_user.user_currency }}) - Waste(%)</div>
+            <div class="col-lg-12 mt-2 mb-2 error-message f-bold"><h5>{{ data_to_render.h_total_wastes | currency }} <span clasS="color-black">/</span> {{ data_to_render.h_waste_percentage | percentage }}</h5></div>
+            <div class="col-lg-12 mb-2 personal-blue-color small-size">{{ data_to_render.h_search_start_date }}-{{ data_to_render.h_search_end_date }} </div>
+        </div>
+    </div>
+    <div class="col-lg-4 mt-1">
+        <div class="col-lg-12 border rounded-2 p-2 shadow">
+            <div class="col-lg-12 mb-2">Units sell</div>
+            <div class="col-lg-12 mt-2 mb-2 sucess-message f-bold"><h5>{{ data_to_render.units_sell }}</h5></div>
+            <div class="col-lg-12 mb-2 personal-blue-color small-size">{{ data_to_render.search_start_date }}-{{ data_to_render.search_end_date }} </div>
+        </div>
+    </div>
+    <div class="col-lg-4 mt-1">
+        <div class="col-lg-12 border rounded-2 p-2 shadow">
+            <div class="col-lg-12 mb-2">Product profit({{ current_user.user_currency }})</div>
+            <div class="col-lg-12 mt-2 mb-2 sucess-message f-bold"><h5>{{ data_to_render.product_profit | currency }}</h5></div>
+            <div class="col-lg-12 mb-2 personal-blue-color small-size">{{ data_to_render.search_start_date }}-{{ data_to_render.search_end_date }} </div>
+        </div>
+    </div>
+</div>
+<div class="row mt-3 mb-3">
+    <div class="col-sm-12 mt-3 mb-3">
+        <div class="chart-container" style="position: relative; height:40vh; width:100%">
+            <canvas id="salesWastesChart"></canvas>
+        </div>
+    </div>
+    <div class="col-sm-8 mt-3 mb-3">
+        <div class="chart-container" style="position: relative; height:40vh; width:100%">
+            <canvas id="salesByHoursInterval"></canvas>
+        </div>
+    </div>
+    <div class="col-sm-4 mt-3 mb-3">
+        <div class="chart-container" style="position: relative; height:40vh; width:100%">
+            <canvas id="topWasteMotives"></canvas>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+<div class="col-lg-12 text-center mt-3 mb-3">
+    <h5 class="personal-blue-color f-bold">Workers</h5>
+</div>
+<hr></hr>
+<div class="col-lg-12 p-0 mt-2 text-center">
+    {% for section_data in workers_section_data %}
+    <div class="mb-3">
+        <h7 class="color-black">{{ section_data.section }}</h5>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">Number</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Workload/day</th>
+                    <th scope="col">Workload/week</th>
+                    <th scope="col">Base salary/month</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                {% if (section_data.workers | length) > 0 %}
+                    {% for worker in section_data.workers %}
+                    <tr id="{{ worker.id }}" name="worker_data_row"> 
+                        <td class="row_worker_number">{{ worker.worker_number }}</td>   
+                        <td class="row_worker_name">{{ worker.fullname }}</td>
+                        <td class="row_worker_role">{{ worker.role }}</td>
+                        <td class="row_worker_workload_day">{{ worker.workload_day }}</td>
+                        <td class="row_worker_workload_week">{{ worker.workload_week }}</td>
+                        <td class="row_worker_base_salary sucess-message f-bold">{{ worker.base_salary | currency }}</td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="6" class="text-center">No workers.</td>
+                    </tr>
+                {% endif %}
+                    
+            </tbody>
+        </table>
+    </div>
+    {% endfor %}    
+</div>

@@ -1,0 +1,26 @@
+{% extends "nav_with_pagination.html" %}
+{% block table %}
+<div class="mt-2 mb-2">
+    <span class="color-black">Inventory number: </span><span class="f-bold personal-blue-color">{{ inventory_number }}</span>
+    <span class="color black">Products: </span><span class="f-bold personal-blue-color">{{ products | length }}</span>
+</div>
+<table class="table table-bordered table-sm">
+    <thead>
+        <tr>
+            <th scope="col">Bar code</th>
+            <th scope="col">Description</th>
+            <th scope="col">Status</th>
+
+            
+        </tr>
+    </thead>
+    <tbody class="table-group-divider">
+        {% for product in products %}                
+            <td class="row_internal_code">{{ product.bar_code }}</td>
+            <td class="row_description">{{ product.description }}</td>
+            <td class="row_status">{{ product.status }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

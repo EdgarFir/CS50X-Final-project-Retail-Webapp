@@ -1,0 +1,17 @@
+<div class="col-lg-12 p-2">
+    <div class="display-none" id="email_token">
+    </div>
+    <div class="col-lg-12 p-1">
+        <form id="change_currency_form">
+            {{ form.hidden_tag() }}
+            <div class="mb-2">
+                {{ form.currency.label(class="form-label personal-blue-color") }}
+                {{ form.currency(class="form-select") }}
+                {% for error in form.currency.errors %}
+                    <span class="small-size error-message mt-1 mb-1">{{ error }}</span>
+                {% endfor %}
+            </div>
+            {{ form.submit(class="btn btn-primary mt-3 mb-3 w-100", id="confirm_change") }}
+        </form>
+    </div>
+</div>

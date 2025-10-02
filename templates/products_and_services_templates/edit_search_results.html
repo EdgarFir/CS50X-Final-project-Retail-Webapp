@@ -1,0 +1,62 @@
+{% if (search_results | length > 0) %}
+    <div class="col-lg-12 border-bottom p-1 vertical-nav-content-body-title mb-4 mt-3">
+        <span class="title">Results:</span> <span class="personal-blue-color result">{{ search_results | length }}</span>
+    </div>
+    <div class="table-responsive user-form">
+        <table class="table table-bordered table-hover table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">Type</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Bar code</th>
+                    <th scope="col">Unity m.</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Sub category</th>
+                    <th scope="col">Cost price({{ current_user.user_currency }})</th>
+                    <th scope="col">Sell price({{ current_user.user_currency }})</th>
+                    <th scope="col">Margin percentage(%)</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                    {% for result in search_results %}
+                    <tr style="height: 10px;" class="{% if result.type == 'Product' %}edit_product{% else %}edit_service{% endif %}" id="{{ result.id }}">
+                        <td class="row_description">{{ result.type }}</td>
+                        <td class="row_description">{{ result.description }}</td>
+                        <td class="row_bar_code">{{ result.bar_code }}</td>
+                        <td class="row_unity_m">{{ result.unity_m }}</td>
+                        <td class="row_category">{% if result.type == 'Product' %}{{ categories[ result.category | int  - 1001].category }}{% else %} {{ result.category}}{% endif %}</td>
+                        <td class="row_sub_category">{% if result.type == 'Product' %}{{ categories[ result.category | int  - 1001].sub_categories[ (result.sub_category | int) - 1 - result.category | int * 10].sub_category }}{% else %} {{ result.category}} {% endif %}</td>
+                        <td class="row_cost_price f-bold error-message">{{ result.cost_price | currency }}</td>
+                        <td class="row_sell_price f-bold sucess-message">{{ result.sell_price | currency }}</td>  
+                        <td class="row_sell_margin_percentage f-bold">{{ result.margin_percentage | percentage }}</td>
+                    </tr>
+                    {% endfor %}
+            </tbody>
+        </table>
+        <div class="message small-size"></div>    
+    </div>
+{% else %}
+<div class="table-responsive user-form">
+    <table class="table table-bordered table-sm">
+        <thead>
+            <tr>
+                <th scope="col">Type</th>
+                <th scope="col">Description</th>
+                <th scope="col">Bar code</th>
+                <th scope="col">Unity m.</th>
+                <th scope="col">Category</th>
+                <th scope="col">Sub category</th>
+                <th scope="col">Cost price({{ current_user.user_currency }})</th>
+                <th scope="col">Sell price({{ current_user.user_currency }})</th>
+                <th scope="col">Margin percentage(%)</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            <tr class="text-center">
+                <td colspan="9">No results!</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endif %}
+

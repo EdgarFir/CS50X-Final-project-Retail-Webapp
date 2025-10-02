@@ -1,0 +1,11 @@
+<ul class="list-group">
+   {% for k,v in mensal_report_data.items() %}
+  
+    <li class="list-group-item list-group-item-light"><span class="f-bold">{{ k }}</span> <span style="float: right">{{ v | safe }}</span></li>
+
+    {% endfor %}
+</ul>
+
+<ul class="list-group mt-1 mb-1">
+    <li class="list-group-item {% if company_month_resume_total > 0 %} list-group-item-success {% elif company_month_resume_total < 0 %}list-group-item-danger{% endif %}">Total:<span style="float: right" class="{% if company_month_resume_total > 0 %} sucess-message {% elif company_month_resume_total < 0 %} error-message {% endif %}">{{company_month_resume_total | currency }}</span></li>
+</ul>

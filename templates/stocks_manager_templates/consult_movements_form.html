@@ -1,0 +1,34 @@
+<div id="search_product" class="mt-2">
+    <h5 class="mt-3 personal-blue-color mt-3">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-chevron-double-right me-1" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708"/>
+            <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708"/>
+          </svg>
+          Consult movements</h5>
+    <hr></hr>
+    <div class="color-black mb-3">
+        Product: <span class="personal-blue-color f-bold me-1">{{ product_or_service.description }}</span>
+        Bar code: <span class="personal-blue-color f-bold me-1">{{ product_or_service.bar_code }}</span>
+        Unity measurement: <span class="personal-blue-color f-bold">{{ product_or_service.unity_m }}</span>
+        Cost price: <span class="personal-blue-color f-bold">{{ product_or_service.cost_price | currency }}</span>
+    </div>
+    <div class="col-lg-12 mb-3 mt-3">
+        <div class="row">
+            <div class="col-lg-6">
+                <label for="start_date" class="form-label mt-3">Start date:</label>
+                <input type="date" id="start_date" class="form-control border rounded-0 h-25">        
+            </div>
+            <div class="col-lg-6">
+                <label for="end_date" class="form-label mt-3">End date:</label>
+                <input type="date" id="end_date" class="form-control border rounded-0 h-25">        
+            </div>
+        </div>
+    </div>
+</div>
+<div class="user-form">
+    <div class="consult_movements_message small-size mt-1 mb-1 error-message"></div>
+</div>
+<div class="col-lg-12 mt-4 flex-end">
+    <button class="btn btn-sm btn-success rounded-0 min-w-10 search_button small-size w-100" id="consult_movements" type="submit" role="button" value="button">Consult movements</button>
+</div>
+<div class="col-lg-12 mt-3 mb-3" id="movements_content"></div>

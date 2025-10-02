@@ -1,0 +1,70 @@
+<form class="m-3 user-form personal-form" id="edit_product_form">
+    <input type="hidden" id="product_id" name="product_id" value="id={{ product_id }}">
+    <div id="product_basic_info" class="mb-3 mt-3">
+        {{ form.hidden_tag() }}
+        <div id="product_basic_info" class="mb-3 mt-3">
+            <div class="mt-2 mb-2">
+                <h7 class="personal-blue-color">Basic information</h7>
+            </div>
+            
+            {{ form.product_description.label(class="form-label") }}
+            {{ form.product_description(class="form-control rounded-0 border", placeholder="Enter product description", value=product.description) }}
+                    
+            {{ form.bar_code.label(class="form-label") }}
+            {{ form.bar_code(class="form-control rounded-0 border", placeholder="Enter product bar code", value=product.bar_code) }}
+            
+        </div>
+        <hr></hr>
+        <div id="product_type_info" class="mb-3 mt-3">
+            <div class="mt-2 mb-2">
+                <h7 class="personal-blue-color">Type info:</h7>
+            </div>
+                    
+            {{ form.unity_m.label(class="form-label") }}
+            {{ form.unity_m(class="form-select form-select-sm", value=product.unity_m)}}
+                
+            {{ form.categories.label(class="form-label") }}
+            {{ form.categories(class="form-select form-select-sm") }}
+                    
+            <div id="sub_categories_content">
+                {{ form.sub_categories.label(class="form-label") }}
+                {{ form.sub_categories(class="form-select form-select-sm")}}       
+            </div>        
+                  
+        </div>
+        <hr></hr>
+        <div id="product_financial_info" class="mb-3 mt-3">
+            <div class="mt-2 mb-2">
+                <h7 class="personal-blue-color">Financial info:</h7>
+            </div>
+            <div class="display-none">
+                {{ form.stock.label(class="form-label") }}
+                {{ form.stock(class="form-control border rounded-0", placeholder="Insert 0 if product has no stock.", value=0) }}
+            </div>
+            
+            {{ form.cost_price.label(class="form-label") }}
+            {{ form.cost_price(class="form-control border rounded-0", placeholder=current_user.user_currency, value=product.cost_price ) }}
+
+            {{ form.sell_price.label(class="form-label") }}
+            {{ form.sell_price(class="form-control border rounded-0", placeholder=current_user.user_currency, value=product.sell_price) }}
+                    
+        </div>
+
+        <div class="col-lg-12 mt-3 small-size message"></div>
+                   
+    </div>
+    <hr></hr>
+    
+    <div class="col-lg-12 mt-3 small-size message"></div>
+    
+    <div class="col-lg-12 mt-4 flex-end">
+        <button class="btn btn-sm btn-success rounded-0 w-100 rounded-1" id="save_changes" type="submit" role="button">
+            Save changes
+        </button>
+    </div>
+    <div class="col-lg-12 mt-2 flex-end">
+        <button class="btn btn-sm btn-danger rounded-0 w-100 rounded-1" id="delete_product" type="submit" role="button">
+            Delete product
+        </button>
+    </div>
+</form>

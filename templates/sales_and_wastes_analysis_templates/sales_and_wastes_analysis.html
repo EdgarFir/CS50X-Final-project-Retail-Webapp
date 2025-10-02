@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+{% block title %}
+    Sales and wastes analysis
+{% endblock %}
+
+{% block main %}
+
+<div class="col-lg-12 header_description mt-2" style="min-height: 225px!important; height: 225px!important;">
+    <div style="min-height: 200px; padding:inherit;">
+        <h1 class="mb-3 mt-3 p-3">Sales and wastes analysis</h1>
+        <h3 class="mb-3 p-3">Consult your company, products and services sales and wastes</h3>
+    </div>
+</div>
+<div class="container-fluid p-0 mt-3 bg-white">
+    <div class="row mx-auto p-1">
+        <div class="col-lg-12 mt-1 mb-1 p-1">
+            <form class="form-control-sm p-1 user-form">
+                <h5 class="personal-blue-color f-bold text-center mb-2 mt-2">Company sales and wastes analysis</h5>
+                <hr></hr>
+                <div class="row mb-3 mt-3">
+                    <div class="col-lg-6 mb-2 mt-2 align-mid gap-8 inline-flex-space-between">
+                        <select class="form-select form-select-sm" id="analyze_date_options">
+                            <option selected disabled>Select analyze date type:</option>
+                            <option name="analyze_date_option" value="year">Year</option>
+                            <option name="analyze_date_option" value="month">Month</option>
+                            <option name="analyze_date_option" value="date_period">1-15 days date period</option>
+                        </select>
+                    </div>
+                        
+                    <div class="col-lg-6 mb-2 mt-2 align-mid gap-8 display-none" name="analyze_date_form" id="two_date_periods">
+                        <span class="color-black f-bold">From:</span>                                
+                        <input type="date" class="form-control form-control-sm border rounded-0" id="analyze_start_date" max="{{ maximum_worker_born_date }}">
+                        <span class="color-black f-bold">To:</span> 
+                        <input type="date" class="form-control form-control-sm border rounded-0" id="analyze_end_date" max="{{ maximum_worker_born_date }}">
+                    </div>
+
+                    <div class="col-lg-6 mb-2 mt-2 align-mid gap-8 display-none" name="analyze_date_form" id="month_analyze">
+                        <select class="form-select form-select-sm" id="month_analyze_options">
+                            <option selected disabled>Select month:</option>
+                            {% for month_year in months_years %}
+                            <option name="analyze_month_option">{{month_year}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-lg-6 mt-3 mb-3 align-mid gap-8 display-none" name="analyze_date_form" id="year_analyze">
+                        <select class="form-select form-select-sm w-100" id="year_analyze_options">
+                            <option selected disabled>Select year:</option>
+                            {% for year in years %}
+                            <option name="analyze_year_option">{{year}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="col-lg-6 mt-3 mb-3 align-mid gap-8 display-none" name="analyze_date_form" id="content_analyze">
+                        <select class="form-select form-select-sm w-100" id="content_analyze_options">
+                            <option selected disabled>Choose content type:</option>
+                            <option name="content_analyze_option" value="company">Company</option>
+                            <option name="content_analyze_option" value="product">Product</option>
+                            <option name="content_analyze_option" value="service">Service</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-12 mb-3 mt-3 display-none" id="analize_product_service_input">
+                        <input autocomplete="off" maxlength="120" minlength="4" type="search" id="description_bar_code" class="form-control form-control-sm border rounded-0" placeholder="Search for description or bar code and select">
+                        <div class="display-none product_id"></div>
+                        <div class="list-group small-size" id="description_auto_complete">
+                        </div>
+                    </div>    
+                </div>
+                
+                <div class="message small-size mt-3 mb-3"></div>
+                
+
+                <button class="btn btn-sm btn-success rounded-0 w-100" id="analyze_sales_and_wastes" type="submit" role="button">Analyze</button>
+                
+                <hr></hr>
+            </form>
+        </div>
+        <div class="col-lg-12" id="analysis_content">
+             
+        </div>
+        
+    </div>
+</div>
+
+{% endblock %}

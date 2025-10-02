@@ -1,0 +1,84 @@
+<div class="col-lg-12 mb-3 mt-3">
+    <h5 class="personal-blue-color">Finish products from order register!</h5>   
+</div>
+<div class="col-lg-12 mb-3 mt-3">
+    <h7>
+        <p>You have new products in your order to register before we can proceed.</p>
+        <p>Complete all the information left to complete order register.</p>
+    </h7>
+</div>
+
+<div class="col-lg-12 mb-2 mt-3">
+    <h5><span class="personal-blue-color">Number of new products to register: </span> {{ (new_products | length) }}</h5>
+</div>
+{% set i = 0 %}
+<div class="user-form">
+{% for product in new_products %}
+<div class="col-lg-12 mt-3 mb-2 p-3" id="vertical-nav-content-form">
+    <form class="vertical-nav-add-form" name="new_product_form">
+            <h5 class="personal-blue-color mt-2 mb-2">
+                Register Product
+            </h5>            
+            <div class="inline-flex-space-between mt-2 mb-2 gap-8">
+                <div class="w-50">
+                    <label for="new_product_description{{ loop.index0 }}" class="form-label">Description*:</label>
+                    <input required type="text" value="{{ product.description }}" id="new_product_description{{ loop.index0 }}" class="form-control form-control-sm border-0 rounded-0 h-25" disabled>
+                </div>
+                <div class="w-50">
+                    <label for="new_product_bar_code{{ loop.index0 }}" class="form-label">Bar Code:</label>
+                    <input type="text" value="{{ product.bar_code }}" id="new_product_bar_code{{ loop.index0 }}" class="form-control form-control-sm border-0 rounded-0 h-25" disabled>                                
+                </div>
+            </div>
+            <div class="inline-flex-space-between mt-2 mb-2">
+                <div class="w-25">
+                    <label for="new_product_cost_price{{ loop.index0 }}" class="form-label">Cost price:</label>
+                    <input type="text" class="form-control form-control-sm border rounded-0 f-bold error-message" name="{{ product.cost_price }}" value="{{ product.cost_price | eur }}" id="new_product_cost_price{{ loop.index0 }}" aria-label="Sizing example input" disabled>
+                </div>
+                <div class="w-25">
+                    <label for="new_product_sell_price{{ loop.index0 }}" class="form-label">Sell price:</label>
+                    <input type="text" class="form-control form-control-sm border rounded-0 f-bold sucess-message" name="{{ product.sell_price }}" value="{{ product.sell_price | eur }}" id="new_product_sell_price{{ loop.index0 }}" aria-label="Sizing example input" disabled>
+                </div>
+                <div class="w-25">
+                    <label for="new_product_qtd{{ loop.index0 }}" class="form-label">Quantity:</label>
+                    <input type="text" class="form-control form-control-sm border rounded-0 f-bold" value="{{ product.quantity }}" id="new_product_qtd{{ loop.index0 }}" aria-label="Sizing example input" disabled>                        
+                </div>
+            </div>
+            <div class="inline-flex-space-between mt-2 mb-2 gap-8">
+                <div class="w-50">
+                    <label for="new_product_family{{ loop.index0 }}" class="form-label">Family:</label>
+                    <select class="form-select form-select-sm edit_product" id="new_product_family{{ loop.index0 }}" aria-label="Default select example">
+                        {% for family in families %}
+                            <option class="family_option">{{ family.family }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="w-50">
+                    <label for="new_product_unity_m{{ loop.index0 }}" class="form-label">Unity Measurement:</label>
+                    <select class="form-select form-select-sm edit_input" id="new_product_unity_m{{ loop.index0 }}" aria-label="Default select example">
+                        {% for unity_m in unities_m %}
+                            <option class="unity_m_option">{{ unity_m }}</option>
+                        {% endfor %}
+                    </select>
+                    
+                </div>
+            </div>
+            <div class="form-check form-switch flex-end mt-2 mb-1 gap-8">
+                <input class="form-check-input" type="checkbox" name="validate_product" role="switch" id="validate{{ loop.index0 }}">
+                <label class="form-check-label" for="validate{{ loop.index0 }}">Validate</label>
+            </div>
+        </div>
+    </form>
+    {% set i = i + 1 %}
+    {% endfor %}
+
+    <div class="small-size mt-1 mb-1 message"></div>
+    
+    <div class="col-lg-12 mt-1 mb-1">
+        <button class="btn btn-sm btn-success w-100" type="submit" id="confirm_register_new_order_products">Confirm</button>
+    </div>
+</div>
+
+<div style="display: none;">
+    <div id="order_total" value="{{ order_total }}">{{ order_total }}</div>
+    <input id="other_encharges" value="{{ order_other_encharges }}">
+</div>

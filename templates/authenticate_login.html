@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block title %}
+    Authenticate login
+{% endblock %}
+{% block main %}
+    <div class="col-lg-12 p-5">
+        <div class="col-lg-12 mt-2 mb-3">
+            <h5 class="color-black">In order to maintain your account and personal information secure, authenticate login and insert your personal code.</h5>
+        </div>
+        <div class="col-lg-12 p-2">
+            <form action="/authenticate_login" method="post">
+                {{ form.hidden_tag() }}
+                <div class="mb-1">
+                    {{ form.personal_code.label(class="form-label personal-blue-color") }}
+                    {{ form.personal_code(class="form-control personal_code", placeholder="Enter personal code", autofocus="on") }}
+                    {% for error in form.personal_code.errors %}
+                        <span class="small-size error-message">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {{ form.submit(class="btn btn-primary mt-3 mb-3 w-100") }}
+            </form>
+        </div>
+    </div>
+{% endblock %}

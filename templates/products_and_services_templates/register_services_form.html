@@ -1,0 +1,65 @@
+<div class="col-lg-12 mb-3 mt-3" id="vertical-nav-content-title">
+    <h4 class="personal-blue-color">Register services</h4>
+</div>
+
+<div class="col-lg-12 mb-3" id="vertical-nav-content-description">
+    <div>A service is a a product with <span style="color:red;"><b>null</b></span> stock and works with stocks from other products. Let's imagine you want to sell a salad in your market. You can register the salad as a service and the products that use that service have their stock deducted.</div>
+</div>
+
+<div id="add_services_content">
+    <div class="border p-1">
+        <form class="m-3 personal-form m-3 user-form" id="service_form">
+            {{ form.hidden_tag() }}
+            <div id="service-form-content">
+                <div><h7 class="personal-blue-color">Basic information</h7></div>
+                {{ form.service_description.label(class="form-label inline-flex-space-between mt-3") }}
+                {{ form.service_description(class="form-control border rounded-0 h-25 description service-input")}}
+                <hr></hr>
+                <div>
+                    <h7 class="personal-blue-color">Choose the products for your service</h7>
+                </div>
+                <div class="select-service-products-content active_select_input mt-3 mb-3">
+                     {% for item in form.products_associated %}
+                        {{ item.hidden_tag() }}
+                        {{ item.product.label(class="form-label inline-flex-space-between service_product_label")}}
+                        {{ item.product(class="form-select form-select-sm original-select service-input") }}
+
+                        {{ item.stock_associated.label(class="form-label mt-2 service_stock_label") }}
+                        {{ item.stock_associated(class="form-control border rounded-0 h-25 stock service-input stock-input") }}
+                     {% endfor %}
+                    <hr></hr>
+                </div>
+            </div>
+            <div>
+                <button disabled class="btn btn-sm btn-primary w-100 mt-1 mb-1" id="remove_select_input" name="service_add_and_remove_product">
+                    Remove last product
+                </button>
+               
+                <button class="btn btn-sm btn-primary w-100 mt-1 mb-1" id="add_select_input" name="service_add_and_remove_product">
+                    Add product
+                </button>     
+            </div>
+            <hr></hr>
+            <div id="product_financial_info" class="mb-3 mt-3">
+                <div class="mt-2 mb-2">
+                    <h7 class="personal-blue-color">Financial info:</h7>
+                </div>
+                
+                {{ form.cost_price.label(class="form-label") }}
+                {{ form.cost_price(class="form-control border rounded-0 h-25")}}
+                <div class="sucess-message small-size mt-1 mb-1" id="service_calculated_cost_price"></div>
+                
+                {{ form.sell_price.label(class="form-label")}}
+                {{ form.sell_price(class="form-control border rounded-0 h-25") }}
+                
+            </div>
+            <div class="col-lg-12 small-size message mt-2 mb-2"></div>
+
+            {{ form.submit_service(class="btn btn-sm btn-success rounded-0 w-100 service_button small-size") }}
+             
+        </form>
+        </div>
+</div>
+
+
+

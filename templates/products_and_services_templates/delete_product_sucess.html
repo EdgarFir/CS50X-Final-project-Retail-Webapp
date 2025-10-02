@@ -1,0 +1,58 @@
+<div class="row mt-3 mb-3">
+    <div class="col-lg-12 mt-3 mb-3">
+        <h5 class="personal-blue-color text-center">{{ product_description }} deleted with sucess!</h5>
+    </div>
+    {% if service_update_information | length > 0%}
+    <div class="col-lg-12 mt-3 mb-3">
+        <h8 class="f-bold color-black">Services associated updated: <span class="personal-blue-color">{{ service_update_information | length }}</span></h8>
+    </div>
+    <div class="col-lg-12 small-size mt-2 mb-2">
+        <span class="sucess-message f-bold">
+            Services affeted by product delete. Service prices updated automatically.
+        </span>
+    </div>
+    <div class="col-lg-12 mb-3 mt-3">
+        {% for update in service_update_information %}
+        <ul class="list-group">
+            
+                <li class="list-group-item list-group-item-light">
+                    <span class="f-bold personal-blue-color">{{ update.service_description }} / {{ update.service_bar_code }}</span>
+                </li>
+                <li class="list-group-item list-group-item-info">
+                    <span class="color-black">Old cost price: </span><span class="f-bold personal-blue-color">{{ update.old_service_cost_price | currency }} </span>
+                    <span class="color-black">New cost price: </span><span class="f-bold personal-blue-color">{{ update.new_service_cost_price | currency }}</span>
+                </li>
+                <li class="list-group-item list-group-item-info">
+                    <span class="color-black">Old sell price: </span><span class="f-bold personal-blue-color">{{ update.old_service_sell_price | currency }} </span>
+                    <span class="color-black">New sell price: </span><span class="f-bold personal-blue-color">{{ update.new_service_sell_price | currency }}</span>
+                </li>
+                <li class="list-group-item list-group-item-info">
+                    <span class="color-black">Margin percentage: </span><span class="f-bold personal-blue-color">{{ update.margin_percentage | percentage}}</span>
+                </li>
+        </ul>
+        {% endfor %}
+       
+    </div>
+    {% endif %}
+    {% if service_delete_information | length > 0 %}
+    <div class="col-lg-12 mt-3 mb-3">
+        <h8 class="f-bold color-black">Services deleted: <span class="personal-blue-color">{{ service_delete_information | length }}</span></h8>
+    </div>
+    <div class="col-lg-12 small-size mt-2 mb-2">
+        <span class="sucess-message f-bold">
+            Services affeted by product delete. Services deleted because has no products associated.
+        </span>
+    </div>
+    {% for delete in service_delete_information %}
+    <div class="col-lg-12 mb-3 mt-3">
+        <ul class="list-group">
+          
+            <li class="list-group-item list-group-item-info color-black inline-flex-space-between">
+                Description: <span class="f-bold personal-blue-color">{{ delete.service_description }}</span> Bar code: <span class="f-bold personal-blue-color">{{ delete.service_bar_code }}</span>
+            </li>
+            
+        </ul>
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>

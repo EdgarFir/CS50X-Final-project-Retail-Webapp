@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block main %}
+    <div class="col-lg-12 mt-3 p-5">
+        <div class="col-lg-12 bg-ligth p-5">
+            <h2 class="personal-blue-color f-bold">SmallBiz</h2>
+            <form class="mt-3 mb-3" action="/login" method="post">
+                {{ form.hidden_tag() }}
+                
+                <div class="mb-1">
+                    {{ form.email.label(class="form-label personal-blue-color") }}
+                    {{ form.email(class="form-control", placeholder="Enter email", autofocus="on") }}
+                    {% for error in form.email.errors %}
+                        <span class="small-size error-message">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                <div class="mb-2">
+                    {{ form.password.label(class="form-label personal-blue-color") }}
+                    {{ form.password(class="form-control", placeholder="Insert password") }}
+                    {% for error in form.password.errors %}
+                        <span class="small-size error-message">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                <div class="form-check">
+                    {{ form.remember(class="form-check-input", id="flexCheckDefault")}}
+                
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Remember me? 
+                    </label>
+                </div>
+                {{ form.submit(class="btn btn-outline-dark mt-1 mb-2 w-100") }}
+            </form>
+            <div class="form-text">
+                Not registered? <a href="/register">Register!</a>
+            </div>
+            <div class="form-text">
+                Forget password? <a href="/recover_password">Recover password!</a>
+            </div>
+        </div>       
+    </div>
+{% endblock %}

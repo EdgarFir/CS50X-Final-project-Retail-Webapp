@@ -1,0 +1,28 @@
+{% extends 'nav_with_pagination.html' %}
+{% block table %}
+<div class="mt-2 mb-2">
+    Purchases
+</div>
+<div class="user-form">
+    <table class="table table-bordered table-hover table-sm">
+        <thead>
+            <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Payment method</th>
+                <th scope="col">Total</th>
+                <th scope="col">Change</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            {% for sale in actual_day_pos_sales_with_pagination %}
+            <tr class="sale_information" id="{{ sale.id }}">                
+                <td class="row_datetime">{{ sale.datetime }}</td>
+                <td class="row_payment_method">{{ sale.payment_method }}</td>
+                <td class="row_total"><span class="sucess-message f-bold">{{ sale.total | currency }}</span></td>
+                <td class="row_change"><span class="sucess-message f-bold">{{ sale.change | currency }}</span></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
