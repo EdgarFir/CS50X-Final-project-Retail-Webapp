@@ -45,15 +45,34 @@ To ensure the app security I used some tools and configurations provided by Flas
 * All passwords and personal codes in databases are **encrypted** to maintain users information secure.
 * To manage users login and sessions security I used **Flask-Login**.
 
+# Prerequisites
 
+- Python 3.12 or higher  
+- pip (Python package manager)  
+- git (optional, if cloning the repository)
 
+# Install and run:
 
+```bash
 
+# Installation Guide
+python3 --version
+pip --version
+git --version 
 
+# Activate virtual environment - Linux/MacOS
+python3 -m venv venv
+source venv/bin/activate
 
+# Activate virtual environment - Windows
+python -m venv venv
+venv\Scripts\activate
 
+# Install dependencies
+pip install -r requirements.txt
 
+# Run
+flask run
 
-
-
-
+# Deativate virutal enviroments when finished
+deactivate
