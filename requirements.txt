@@ -1,8 +1,10 @@
 flask
 flask_login
 flask_wtf
-wtf_forms
+Flask-WTF
+Flask-Session
+python-dateutil
+email_validator
 itsdangerous
 cs50
 password_validator
-functools

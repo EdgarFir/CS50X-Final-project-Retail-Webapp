@@ -145,7 +145,8 @@ def clean_white_spaces(string: str) -> str:
 def calculate_price_margin(cost_price: float, sell_price: float) -> float:
     """ Calculate product margin """
 
-    return round((((sell_price - cost_price) * 100) / cost_price), 2)
+    margin = (sell_price - cost_price) / cost_price * 100
+    return round(margin, 2)
 
 def calculate_total_expenses(expenses: list) -> float:
     """ Calculate expenses total """
