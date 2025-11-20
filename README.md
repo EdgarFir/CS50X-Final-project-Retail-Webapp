@@ -113,6 +113,10 @@ pip install -r requirements.txt
 
 # Run the application
 flask run
+
+# Deactivate when finished
+deactivate
+
 ```
 ---
 
@@ -120,5 +124,3 @@ flask run
 
 **SmallBiz** was my final project for the online course **CS50x – Introduction to Computer Science** from Harvard University.  
 This project allowed me to deepen and reinforce the concepts and skills I learned throughout the course by applying them in a practical, real-world web application.
-# Deactivate when finished
-deactivate
