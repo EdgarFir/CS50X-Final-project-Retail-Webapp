@@ -1,78 +1,124 @@
-# SmallBiz
-#### Video Demo:  https://youtu.be/_iNC1dtRF7I
-#### Description:
-**Smallbiz** is a web application/tool designed to retail business.
+# 📦 SmallBiz
+#### 🎥 Video Demo: https://youtu.be/_iNC1dtRF7I  
+#### 📝 Description  
+**SmallBiz** is a web application designed to support small retail businesses by providing an organized, fast, and efficient system for managing products, inventories, sales, and finances.  
+The project was inspired by real ERP systems such as **SAP**, aiming to recreate some of their essential features in a simplified, accessible way — based on my previous professional experience working in retail, logistics, and warehouse operations.
 
-## Introduction
-The creation of this project came with the idea of helping small business in my commmunity. 
-They use rudimentary financial and logistic systems, so I decided to create an web app to make this process easier, faster and efficient, so they can concentrate in other important details to improve their business.
+---
 
-The application is based on product registration and management through inventories and records of wastes/sales. User can consult his business cash flow and other important details through charts made with **Javascript** library *Chart.js* and financial mensal reports. **Smallbiz** also contains a cash register system with two modes - *Manual* and *Bar code reader*. The difference between this two modes, as we can see by their names. In first mode, users have to digit the product bar code mannually and in the second, if users have a **bar code reader** system, they can use it to read products bar code and make the product register way faster.
-## Design
-Smallbiz was designed to be user-friendly and simple.
-I used **Python** and **Flask** in **Smallbiz** back-end and used **HTML** with **CSS** and **Bootstrapp** library in front-end. Used **Javascript** together with **Ajax** to make most of the requests and responses dinamically without page reload, to give to user an efficient and fast *web application*.
+## 🧭 Introduction
 
-**Smallbiz** has 8 important files in app maintenance, security and scalabilty and code organization:
+The idea for this project came from noticing that many small businesses in my community rely on outdated or manual tools for managing finances and logistics.  
+Having worked for over a decade in store and warehouse environments, I had firsthand experience with inventory control, product handling, and operational workflows — which directly influenced the design of SmallBiz.
 
-* styles.css
-* script.js
-* app.py
-* db_helper.py
-* form_models.py
-* helpers.py
-* smallbiz_project.db
-* pos_sales.db
+SmallBiz helps business owners by offering:
 
-The file **app.py** starts and configures my Flask app and his security, manages the connections with databases and the user acess to app routes.
+- Product registration and management  
+- Inventory tracking  
+- Waste and sales logging  
+- Cash flow and monthly financial reports  
+- Visual analytics using **Chart.js**  
+- A cash register system with two modes:  
+  - **Manual mode** – enter barcodes manually  
+  - **Barcode reader mode** – use a real barcode scanner for faster input  
 
-The file **helpers.py** contains functions to clean data sent from client-side, do financial calculations and has an addapted wrapped Flask decorator - *login_required* - function.
+---
 
-The file **db_helper.py** connects **app.py** with **smallbiz_project.db**. This module contains a class that initiates an object with user id, and helps and organize the connection to smallbiz_project database.
+## 🎨 Design
 
-The file **form_models.py** contains forms using **WTF-Forms** from **Flask-WTF** to ensure ill-intentionated users dont try to manipulate forms and prevent *Cross-Site* attacks.
+SmallBiz was built to be simple, intuitive, and user-friendly.
 
-The file **styles.css** has some CSS and media queries to some *Html* elements responde in a responsive way depending on users device screen size.
+- **Backend:** Python + Flask  
+- **Frontend:** HTML, CSS, Bootstrap  
+- **Dynamic behavior:** JavaScript + AJAX (without reloading pages)
 
-The file **script.js** has an important role in the way app works. It's what makes the app dynamic through dinamic requests to server-side, receives the responses and send to client-side with help of **Ajax**. Also helps in the way users interact with forms and make some elements responsive to differente devices screen size.
+The project relies on 8 core files that ensure maintainability, security, scalability, and code organization:
 
-The remaining files are the databases used by my web app. **smallbiz_project.db** is the main, this database save all users information and all their companies sales, wastes, workers, etc. **pos_sales.db** saves information relative to *Cash register system* purchases.
-## Security
-To ensure the app security I used some tools and configurations provided by Flask documentation:
-* Configured **Content-Security-Police** to ensure only internal scripts are loaded, avoiding scripts by ill-intentionated users.
-* Used **WTF-Forms** from **Flask-WTF** to ensure the forms security through a secret token passed to the form in client-side preventing *Cross-Site* and *XSS* attacks.
-* Implemented **Two-Authenticator-Factors** where users must set a personal code set after first login, and everytime users want to change password, email or even personal code have to pass by this system.
-* To prevent **SQL injection** all requests made by users that need a connection with databases, are passed with placeholders in queries.
-* All passwords and personal codes in databases are **encrypted** to maintain users information secure.
-* To manage users login and sessions security I used **Flask-Login**.
+- `styles.css`  
+- `script.js`  
+- `app.py`  
+- `db_helper.py`  
+- `form_models.py`  
+- `helpers.py`  
+- `smallbiz_project.db`  
+- `pos_sales.db`
 
-# Prerequisites
+### 📁 Core Files Overview
 
-- Python 3.12 or higher  
-- pip (Python package manager)  
-- git (optional, if cloning the repository)
+- **app.py**  
+  Initializes and configures the Flask app, manages database connections, and handles route security.
 
-# Install and run:
+- **helpers.py**  
+  Provides data-cleaning functions, financial calculations, and a custom `login_required` decorator.
+
+- **db_helper.py**  
+  Connects the app to `smallbiz_project.db` and organizes database operations for each user.
+
+- **form_models.py**  
+  Provides secure form handling using **Flask-WTF** with CSRF protection.
+
+- **styles.css**  
+  Defines responsive behavior and custom styling.
+
+- **script.js**  
+  Handles AJAX requests, updates UI dynamically, and manages client-side interactions.
+
+- **smallbiz_project.db**  
+  Main database storing users, companies, sales, wastes, employees, and other business data.
+
+- **pos_sales.db**  
+  Stores all records related to POS (cash register) operations.
+
+---
+
+## 🔐 Security
+
+SmallBiz includes several security measures:
+
+- **Content-Security-Policy (CSP)** to block unauthorized scripts  
+- **Flask-WTF + CSRF tokens** to protect forms  
+- **Two-Factor Authentication** for sensitive operations  
+- **Parameterized SQL queries** to prevent SQL injection  
+- **Encrypted passwords and personal codes**  
+- **Flask-Login** for secure session management  
+
+---
+
+# ⚙️ Prerequisites
+
+- Python **3.12+**  
+- pip  
+- git (optional)
+
+---
+
+# 🚀 Installation & Run Guide
 
 ```bash
-
-# Installation Guide
+# Verify installed tools
 python3 --version
 pip --version
 git --version 
 
-# Activate virtual environment - Linux/MacOS
+# Create and activate virtual environment (Linux/MacOS)
 python3 -m venv venv
 source venv/bin/activate
 
-# Activate virtual environment - Windows
+# Create and activate virtual environment (Windows)
 python -m venv venv
 venv\Scripts\activate
 
 # Install dependencies
 pip install -r requirements.txt
 
-# Run
+# Run the application
 flask run
 
-# Deativate virutal enviroments when finished
+---
+
+## ✅ Conclusion
+
+**SmallBiz** was my final project for the online course **CS50x – Introduction to Computer Science** from Harvard University.  
+This project allowed me to deepen and reinforce the concepts and skills I learned throughout the course by applying them in a practical, real-world web application.
+# Deactivate when finished
 deactivate
